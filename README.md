@@ -1,8 +1,9 @@
 # Artificial_Intelligence
-# 사용환경
-  Java
-## 1. Hill Climbing
-### 클래스 설명
+## 사용환경
+  ###Java
+  
+### 1. Hill Climbing
+#### 클래스 설명
  - mainClass : main함수를 담고있는 class
      * main 메소드 : 프로그램이 시작되는 메소드
  - HillClimbing : HillClimbing알고리즘이 수행되는 class
@@ -23,7 +24,7 @@
 (우선순위 결정 heuristic이 낮을수록 높은 우선순위)
   
     
-### 알고리즘 설명
+#### 알고리즘 설명
     맨 처음 상태의 Board는 난수를 생성하여 초기화된다.  
     그뒤에는 hill climbing 알고리즘에 따라서 Board의 상태가 바뀐다.  
     매 단계에서 해당하는 column에 row별로 퀸을 둔다고 가정하고, heuristic이 늘어나지 않으면 queue에 넣는다.  
@@ -32,7 +33,7 @@
     만약 첫번째 hill climbing 메소드로 답을 찾지 못하면 doHillClimbing2메소드가 수행된다.
     두번째 메소드는 heuristic이 늘어나도 queue에 넣어 답을 찾게한다.
 
-### Heuristic function
+#### Heuristic function
     이번 과제에서 heuristic function은 전체 보드에서 제약조건에 위반되는 퀸의 숫자이다.  
     예를들어,  
     0 0 0 0  
@@ -42,8 +43,9 @@
     이와 같은 배열이 있을 경우 heuristic의 값은 3이다. (1이 퀸 0은 보드)  
     따라서 heuristic이 0이 되면 제약조건에 위배되는 퀸이 없으므로 답을 찾았다고 판단한다.  
     priority queue에서는 heuristic이 낮은 것이 높은 우선순위를 갖는다고 판단한다.
-## 2. CSP
-### 클래스 설명
+    
+### 2. CSP
+#### 클래스 설명
  - mainClass : main함수를 담고있는 class
    * main 메소드 : 프로그램이 시작되는 메소드
  - CSP : 세가지 CSP알고리즘이 수행되는 class  
@@ -57,13 +59,12 @@
   * private ArrayList<Integer> [] variable : 변수들을 나타낸다.
   * public void domainUpdate(int column, int row) : cloumn, row에 queen이 놓여지게 되면 다른 variable의 domain도 update가 되어야하는데, 이를 구현한 함수이다. 현재  queen이 놓여진 지점을 기준으로 다른 variable들의 domain에서 위반되는 value들을 제거한다.
   * public void arcConsistency(int column, int row) : 기본적으로 forward checking방법을 사용하고, 이 함수에서는 모든 domain이 제약조건을 위배할 가능성이 없을때까지 각 variable들의 domain을 계속 update한다. 해당 기능을 구현하기 위하여 queue를 사용하였다.
-  
-    
-### 알고리즘 설명
+      
+#### 알고리즘 설명
     맨 처음 상태의 Board는 -1로 초기화가 되어있다. 이것은 빈 상태의 체스판을 뜻한다.
 각 CSP알고리즘에서, 각 단계는 MRV를 활용하여 가장 적은 domain을 가진 variable을 골라 수행된다. standard CSP에서는 아무런 foward checking없이 매 단계가 진행되며, forward checking CSP에서는 각 단계가 진행될때마다, 다른 variable들의 domain을 remove해주는 방식으로 성능을 개선하고, Arc Consistency CSP에서는  앞선 foward checking을 바탕으로 제약조건을 위배하는 선택지가 없을때까지 계속해서 domain을 update해 나가는 방식으로 성능을 개선한다.
 
-### 1~2분 이내에 측정 가능한 최대 N과 측정 시간에 대한 분석
+#### 1~2분 이내에 측정 가능한 최대 N과 측정 시간에 대한 분석
 다음은 N을 20으로 하였을 때의 결과이다.
 >Standard CSP
 Location : 0 2 4 1 3 12 14 11 17 19 16 8 15 18 7 9 6 13 5 10
@@ -94,8 +95,8 @@ Total Elapsed Time : 0.029
 
 위의 결과에서도 마찬가지로 standard CSP가 다른 두 방법보다 상당히 오래 걸리는 것을 확인할 수 있다.
 
-## 3. Genetic Algorithm
-### 클래스 설명
+### 3. Genetic Algorithm
+#### 클래스 설명
  - GeneticAlgorithm.java : 유전 알고리즘을 구현한 클래스  
    * GeneticAlgorithm(int N, int p, double CR, double MR) : 클래스의 생성자로, 퀸의 수, 세대수, crossover rate, mutation rate를 인자로 받음. 초기 세대 부모를 랜덤으로 생성
    * doGeneticAlgorithm() : 유전알고리즘이 실행되는 메소드. 정답을 구할때까지 유전알고리즘을 수행. 부모 세대를 crossover, mutation하여 자식 세대를 구하는 과정을 반복합니다.
@@ -113,7 +114,7 @@ Total Elapsed Time : 0.029
   * calculateFitness() : Fitness 를 계산하기 위하여 사용하는 함수입니다. 여기서 Fitness는 퀸의 수가 N이라면 N*(N-1)/2를 만점으로 하여 (n-queens의 정답조건) 정답조건을 위배하지 않으면 1점씩 더해지는 식으로 구성되어있습니다.
   * clone과 toString : 각각 객체를 복사하고 String형태로 만들어주는 메소드입니다.
 
-### 모델링  
+#### 모델링  
 
   -  유전 알고리즘의 파라미터 : 
      * population : 한세대를 구성할 개체 수를 뜻합니다. 이 프로그램에서는 퀸의수의 세제곱에 해당하는 수를 한 세대로 생각합니다.
