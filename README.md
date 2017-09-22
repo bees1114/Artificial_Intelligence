@@ -1,6 +1,6 @@
 # Artificial_Intelligence
 ## 사용환경
-  ###Java
+### Java
   
 ### 1. Hill Climbing
 #### 클래스 설명
